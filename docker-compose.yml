@@ -1,0 +1,47 @@
+version: '3.6'
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=testdata
+    ports:
+      - "3306:3306"
+    networks:
+      - main_net
+    expose:
+      - 3306
+
+  ubuntu:
+    build: .
+    deploy:
+      restart_policy:
+        condition: on-failure
+    container_name: ubuntu
+    depends_on:
+      - mysql
+    environment:
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    networks:
+      - main_net
+    volumes:
+      - ./ubuntu:/root/home
+
+  webserver:
+      image: nginx:latest
+      container_name: webserver
+      networks:
+        - main_net
+      volumes:
+        - ./nginx:/usr/share/nginx/html
+      ports:
+        - "80:80"
+  
+networks: 
+   main_net:
+
