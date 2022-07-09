@@ -15,7 +15,6 @@ if query run successfully , container can exit 0 , if didn't container will exit
 
 also add a docker with static website , html file , that getting loaded from repo folder
 
-###
 
 
 ###Password are in the .env file
