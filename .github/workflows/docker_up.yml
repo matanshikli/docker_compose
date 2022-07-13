@@ -9,7 +9,7 @@ jobs:
       PROJECT_ID: forward-lead-354606
       IMAGE1: docker_compose_ubuntu
       IMAGE2: nginx
-      IMAGE3: nysql
+      IMAGE3: mysql
     steps:
       - uses: actions/checkout@v2
       - name: Build the stack
