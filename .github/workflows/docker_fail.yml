@@ -1,4 +1,4 @@
-name: Docker Compose Actions Workflow
+name: Docker Compose Actions
 on:
   push:
     branches: [ main ]
@@ -8,16 +8,17 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build the stack
-        id: build_stack
-        run: docker-compose up -d
-        
+        id: build_stac
+        run: docker-compos up -d
       - name: Check on failures
-        if: steps.build_stack.outcome != 'success' 
+        continue-on-error: true
+
+        if: steps.build_stac.outputs.exit_code == 1
         run: |
           echo "Workflow failed!!!"
 
       - name: Check on success
-        if: steps.build_stack.outcome == 'success' 
+        if: steps.build_stac.outputs.exit_code == 0
         run: | 
           echo "Workflow successfully!!!"
 
