@@ -40,8 +40,8 @@ jobs:
     
       - name: Push Docker Image to Container Registry (GCR)
         run: |-
-         for IMAGE in "${IMAGE_LIST[@]}" ; do
-         docker tag $IMAGE:latest gcr.io/$PROJECT_ID/$IMAGE:latest
-         docker push gcr.io/$PROJECT_ID/$IMAGE:latest
-         done
+         "for IMAGE in "${IMAGE_LIST[@]}" ; do
+          docker tag $IMAGE:latest gcr.io/$PROJECT_ID/$IMAGE:latest
+          docker push gcr.io/$PROJECT_ID/$IMAGE:latest
+         done"
  
