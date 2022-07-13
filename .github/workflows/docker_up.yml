@@ -42,10 +42,10 @@ jobs:
       - name: Push Docker Image to Container Registry (GCR)
       
         run: |-
-         docker tag ubuntu:latest gcr.io/$PROJECT_ID/ubuntu:latest
+         docker tag docker_compose_ubuntu:latest gcr.io/$PROJECT_ID/ubuntu:latest
          docker tag webserver:latest gcr.io/$PROJECT_ID/webserver:latest
          docker tag mysql:latest gcr.io/$PROJECT_ID/mysql:latest
-         docker push gcr.io/$PROJECT_ID/ubuntu:latest
+         docker push gcr.io/$PROJECT_ID/docker_compose_ubuntu:latest
          docker push gcr.io/$PROJECT_ID/webserver:latest
          docker push gcr.io/$PROJECT_ID/mysql:latest
  
