@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PROJECT_ID: forward-lead-354606
-      IMAGE_LIST: ("docker_compose_ubuntu" "nginx" "mysql")
+      IMAGE_LIST: [docker_compose_ubuntu,nginx,mysql]
     steps:
       - uses: actions/checkout@v2
       - name: Build the stack
@@ -40,8 +40,7 @@ jobs:
     
       - name: Push Docker Image to Container Registry (GCR)
         run: |-
-         "for IMAGE in "${IMAGE_LIST[@]}" ; do
-          docker tag $IMAGE:latest gcr.io/$PROJECT_ID/$IMAGE:latest
-          docker push gcr.io/$PROJECT_ID/$IMAGE:latest
-         done"
+          docker tag ${{ matrix.IMAGE_LIST }}:latest gcr.io/$PROJECT_ID/${{ matrix.IMAGE_LIST }}:latest
+          docker push gcr.io/$PROJECT_ID/${{ matrix.IMAGE_LIST }}:latest
+         
  
