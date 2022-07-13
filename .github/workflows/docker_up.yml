@@ -11,6 +11,10 @@ jobs:
         id: build_stack
         run: docker-compose up -d
 
+      
+  check:
+    runs-on: ubuntu-latest
+    steps:
       - name: Print successfully if build work
         if: steps.build_stack.outputs.exit_code == 0
         run: echo "Workflow successfully ran"
