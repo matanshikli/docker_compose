@@ -16,6 +16,6 @@ jobs:
         run: echo "Workflow successfully ran"
       
       - name: Print failed if build failed
-        if: steps.build_stack.outputs.exit_code != 0
+        if: steps.build_stack.outputs.exit_code == 1
         run: echo "Workflow failed!!!""
 
