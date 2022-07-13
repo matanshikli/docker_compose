@@ -6,9 +6,10 @@ jobs:
   build_and_check:
     runs-on: ubuntu-latest
     env:
-      IMAGE_NAME: testimage10
       PROJECT_ID: forward-lead-354606
-      ZONE:  us-central1
+      IMAGE1: docker_compose_ubuntu
+      IMAGE2: nginx
+      IMAGE3: nysql
     steps:
       - uses: actions/checkout@v2
       - name: Build the stack
@@ -42,10 +43,10 @@ jobs:
     
       - name: Push Docker Image to Container Registry (GCR)
         run: |-
-         docker tag docker_compose_ubuntu:latest gcr.io/$PROJECT_ID/docker_compose_ubuntu:latest
-         docker tag nginx:latest gcr.io/$PROJECT_ID/nginx:latest
-         docker tag mysql:latest gcr.io/$PROJECT_ID/mysql:latest
-         docker push gcr.io/$PROJECT_ID/docker_compose_ubuntu:latest
-         docker push gcr.io/$PROJECT_ID/nginx:latest
-         docker push gcr.io/$PROJECT_ID/mysql:latest
+         docker tag $IMAGE1:latest gcr.io/$PROJECT_ID/$IMAGE1:latest
+         docker tag $IMAGE2:latest gcr.io/$PROJECT_ID/$IMAGE2:latest
+         docker tag $IMAGE3:latest gcr.io/$PROJECT_ID/$IMAGE3:latest
+         docker push gcr.io/$PROJECT_ID/$IMAGE1:latest
+         docker push gcr.io/$PROJECT_ID/$IMAGE2:latest
+         docker push gcr.io/$PROJECT_ID/$IMAGE3:latest
  
