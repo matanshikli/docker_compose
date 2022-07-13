@@ -11,12 +11,10 @@ jobs:
         id: build_stack
         run: docker-compose up -d
         continue-on-error: true
-
       - name: Check on failures
         if: steps.build_stack.outcome != 'success' 
         run: echo "Workflow failed!!!""
-
-        - name: Check on
+      - name: Check on
         if: steps.build_stack.outcome == 'success' 
         run: echo "Workflow successfully!!!""
 
