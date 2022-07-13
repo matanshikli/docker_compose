@@ -1,25 +1,11 @@
----
 name: Docker Compose Actions Workflow
 on:
   push:
     branches: [ main ]
 jobs:
-  build-push-gcr:
-    name: Build and Push to GCP
+  test:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Build the stack
-        uses: actions/checkout@v2
-
-      - name: docker1
-        id: docker1
-        run: |-
-          docker-compose up -d 
-          echo "::set-output name=exit_code::$(echo -n "$?")"
-
-      - name: Build Docker Image
-        if: "${{ steps.docker1.outputs.exit_code == 0 }}"
-        steps:
-          - name: test-fail
-            run: echo "test1"
-   
+        run: docker-compose up -d
