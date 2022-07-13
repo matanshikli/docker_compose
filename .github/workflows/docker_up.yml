@@ -8,19 +8,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build the stack
+        id: test
         run: docker-compose up -d
-on:
-   workflow_run:
-     workflows: ["test"]
- jobs:
-   on-success:
-     runs-on: ubuntu-latest
-     if: ${{ github.event.workflow_run.conclusion == 'success' }}
-     steps:
-       - run: echo "First workflow was a success"
 
-   on-failure:
-     runs-on: ubuntu-latest
-     if: ${{ github.event.workflow_run.conclusion == 'failure' }}
-     steps:
-       - run: echo "First workflow was a failure"
+      - name: Create artifact of test coverage
+        if: steps.test.outputs.exit_code == 0
+        run: echo "!!!!!!!!!!!!!!!!"
+      
+       - name: no artifact of test coverage
+        if: steps.test.outputs.exit_code =! 0
+        run: echo "@@@@@@@@@@@@@@@@@@@@@"
+
