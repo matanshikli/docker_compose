@@ -8,8 +8,10 @@ jobs:
     name: Build and Push to GCP
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
       - name: Build the stack
+        uses: actions/checkout@v2
+
+      - name: docker1
         id: docker1
         run: |-
           docker-compose up -d 
