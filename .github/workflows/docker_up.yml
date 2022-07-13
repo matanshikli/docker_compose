@@ -12,7 +12,6 @@ jobs:
 on:
    workflow_run:
      workflows: ["test"]
-     types: [completed]
  jobs:
    on-success:
      runs-on: ubuntu-latest
