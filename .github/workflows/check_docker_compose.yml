@@ -40,7 +40,7 @@ jobs:
     
       - name: Push Docker Image to Container Registry (GCR)
         run: |-
-          IFS="," read -a myarray <<< ${{ env.{IMAGE_LIST }}
+          IFS="," read -a myarray <<< ${{ env.IMAGE_LIST }}
           for IMAGE in "${myarray[@]}" ; do
            docker tag ${IMAGE}:latest gcr.io/$PROJECT_ID/${IMAGE}:latest
            docker push gcr.io/$PROJECT_ID/${IMAGE}:latest
