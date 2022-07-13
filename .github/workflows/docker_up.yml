@@ -28,7 +28,7 @@ jobs:
           echo "Workflow successfully!!!"
           exit 0
 
-      - uses: google-github-actions/setup-gcloud@main
+      - uses: google-github-actions/setup-gcloud@v0
         with:
           service_account_key: ${{ secrets.SERVICE_ACCOUNT_GCP }}
           project_id: ${{ env.PROJECT_ID }}
@@ -43,9 +43,9 @@ jobs:
       
         run: |-
          docker tag docker_compose_ubuntu:latest gcr.io/$PROJECT_ID/ubuntu:latest
-         docker tag webserver:latest gcr.io/$PROJECT_ID/webserver:latest
+         docker tag nginx:latest gcr.io/$PROJECT_ID/nginx:latest
          docker tag mysql:latest gcr.io/$PROJECT_ID/mysql:latest
          docker push gcr.io/$PROJECT_ID/docker_compose_ubuntu:latest
-         docker push gcr.io/$PROJECT_ID/webserver:latest
+         docker push gcr.io/$PROJECT_ID/nginx:latest
          docker push gcr.io/$PROJECT_ID/mysql:latest
  
