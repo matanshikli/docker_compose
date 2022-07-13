@@ -10,7 +10,8 @@ jobs:
       - name: Build the stack
         id: build_stack
         run: docker-compose up -d
-        
+        continue-on-error: true
+
       - name: Check on failures
         if: steps.build_stack.outcome != 'success' 
         run: |
