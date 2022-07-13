@@ -15,19 +15,20 @@ jobs:
         id: build_stack
         run: docker-compose up -d
         continue-on-error: true
-  check_job:
+
       - name: Check on failures
         if: steps.build_stack.outcome != 'success' 
         run: |-
           echo "Workflow failed!!!"
           exit 1
 
+
       - name: Check on success
         if: steps.build_stack.outcome == 'success' 
         run: |-
           echo "Workflow successfully!!!"
           exit 0
-  upload_job:
+
       - uses: google-github-actions/setup-gcloud@v0
         with:
           service_account_key: ${{ secrets.SERVICE_ACCOUNT_GCP }}
