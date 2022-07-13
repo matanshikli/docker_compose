@@ -4,13 +4,17 @@ on:
   push:
     branches: [ main ]
 jobs:
-  test:
+  build-push-gcr:
+    name: Build and Push to GCP
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Build the stack
         id: docker1
-        run: docker-compose up -d | echo "::set-output name=exit_code::$(echo -n "$?")"
+        run: |-
+          docker-compose up -d 
+          echo "::set-output name=exit_code::$(echo -n "$?")"
+
       - name: Build Docker Image
         if: "${{ steps.docker1.outputs.exit_code == 0 }}"
         steps:
