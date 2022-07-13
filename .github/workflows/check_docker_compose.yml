@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PROJECT_ID: forward-lead-354606
-      IMAGE: ("docker_compose_ubuntu" "nginx" "mysql")
+      IMAGE_LIST: ("docker_compose_ubuntu" "nginx" "mysql")
     steps:
       - uses: actions/checkout@v2
       - name: Build the stack
