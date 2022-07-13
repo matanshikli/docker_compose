@@ -3,19 +3,19 @@ on:
   push:
     branches: [ main ]
 jobs:
-  test:
+  build_and_check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Build the stack
-        id: test
+        id: build_stack
         run: docker-compose up -d
 
-      - name: Create artifact of test coverage
-        if: steps.test.outputs.exit_code == 0
-        run: echo "!!!!!!!!!!!!!!!!"
+      - name: Print successfully if build work
+        if: steps.build_stack.outputs.exit_code == 0
+        run: echo "Workflow successfully ran"
       
-      - name: no artifact of test coverage
-        if: steps.test.outputs.exit_code != 0
-        run: echo "@@@@@@@@@@@@@@@@@@@@@"
+      - name: Print failed if build failed
+        if: steps.build_stack.outputs.exit_code != 0
+        run: echo "Workflow failed!!!""
 
