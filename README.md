@@ -14,6 +14,6 @@ also add a docker with static website , html file , that getting loaded from rep
 
 ### Password are in the .env file
 # Install and run
-you need to install Docker on your machine >> https://docs.docker.com/get-docker/
-you need to install Docker-compose on your machine >> https://docs.docker.com/compose/install/
-download the repo, enter to the folder via the terminal and send the commend "docker-compose up -d
+1. you need to install Docker on your machine >> https://docs.docker.com/get-docker/
+2. you need to install Docker-compose on your machine >> https://docs.docker.com/compose/install/
+3. download the repo, enter to the folder via the terminal and send the commend "docker-compose up -d
