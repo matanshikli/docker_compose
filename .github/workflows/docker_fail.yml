@@ -9,10 +9,9 @@ jobs:
       - uses: actions/checkout@v2
       - name: Build the stack
         id: build_stac
-        run: docker-compos up -d
+        run: docker-compose up -d
       - name: Check on failures
         continue-on-error: true
-
         if: steps.build_stac.outputs.exit_code != 1
         run: |
           echo "Workflow failed!!!"
