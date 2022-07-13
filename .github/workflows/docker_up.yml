@@ -10,16 +10,14 @@ jobs:
       - name: Build the stack
         id: build_stack
         run: docker-compose up -d
+        continue-on-error: true
 
-      
-  check:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Print successfully if build work
-        if: steps.build_stack.outputs.exit_code == 0
-        run: echo "Workflow successfully ran"
-      
-      - name: Print failed if build failed
-        if: steps.build_stack.outputs.exit_code == 1
+      - name: Check on failures
+        if: steps.build_stack.outcome != 'success' 
         run: echo "Workflow failed!!!""
 
+        - name: Check on
+        if: steps.build_stack.outcome == 'success' 
+        run: echo "Workflow successfully!!!""
+
+    
