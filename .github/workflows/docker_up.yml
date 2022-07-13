@@ -14,11 +14,11 @@ jobs:
       - name: Check on failures
         if: steps.build_stack.outcome != 'success' 
         run: |
-          echo "Workflow failed!!!""
-          
+          echo "Workflow failed!!!"
+
       - name: Check on
         if: steps.build_stack.outcome == 'success' 
         run: | 
-          echo "Workflow successfully!!!""
+          echo "Workflow successfully!!!"
 
     
