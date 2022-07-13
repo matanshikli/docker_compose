@@ -15,7 +15,7 @@ jobs:
         if: steps.test.outputs.exit_code == 0
         run: echo "!!!!!!!!!!!!!!!!"
       
-       - name: no artifact of test coverage
+      - name: no artifact of test coverage
         if: steps.test.outputs.exit_code =! 0
         run: echo "@@@@@@@@@@@@@@@@@@@@@"
 
