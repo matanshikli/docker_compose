@@ -10,12 +10,7 @@ jobs:
       - name: Build the stack
         run: docker-compose up -d
       - name: Build Docker Image
-        run: |
-        if [[ $? -ne 0 ]] ; then
-echo "SQL query failed"
-    exit 1
-else
-    echo "SQL query success!"
-fi
-
+        if: ${{ [[ $? -ne 0 ]] }} 
+        if_true: '0'  # string value
+        if_false: '1' # string value
    
