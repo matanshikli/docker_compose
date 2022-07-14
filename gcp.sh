@@ -6,4 +6,4 @@ sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-c
 sudo chmod +x /usr/local/bin/docker-compose
 sudo git clone https://github.com/matanshikli/docker_compose.git /opt/project
 sudo docker-compose -f /opt/project/docker-compose.yml up
-echo "done!!!!!"
+echo "done!!!!!!!!!!!!!!!!!"
