@@ -8,7 +8,7 @@ jobs:
     env:
       PROJECT_ID: forward-lead-354606
       IMAGE_LIST: 'docker_compose_ubuntu,nginx,mysql'
-      FILE_PATH: /scripts/gcp.sh
+      FILE_PATH: scripts/gcp.sh
     steps:
       - uses: actions/checkout@v2
       - name: Build the stack
