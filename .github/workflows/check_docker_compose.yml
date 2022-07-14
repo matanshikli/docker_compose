@@ -49,7 +49,7 @@ jobs:
 
       - name: Deploy Docker image
         run: |-
-           gcloud compute instances create testvm \
+           gcloud compute instances create testvm1 \
            --image-project=debian-cloud \
            --image-family=debian-10 \
            --zone=us-central1-a \
