@@ -49,6 +49,7 @@ jobs:
 
       - name: Deploy Docker image
         run: gcloud compute instances create test_vm \
+          --zone=us-central1 \
            --image-project=debian-cloud \
            --image-family=debian-10 \
            --metadata-from-file=startup-script=$FILE_PATH
