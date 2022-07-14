@@ -8,7 +8,7 @@ jobs:
     env:
       PROJECT_ID: forward-lead-354606
       IMAGE_LIST: 'docker_compose_ubuntu,nginx,mysql'
-      VNNAME: demo10
+      VNNAME: demo101
     steps:
       - uses: actions/checkout@v2
       - name: Build the stack
@@ -57,15 +57,14 @@ jobs:
            --metadata=startup-script-url=https://storage.googleapis.com/matantest10/gcp.sh
       
       - name: Verify Changed files
-        uses: tj-actions/verify-changed-files@v10
+        uses: tj-actions/verify-changed-files@v0
         id: verify-changed-files
         with:
           files: |
-             gcp.sh
-
-      - name: Perform action when test_directory changes
-        if: contains(steps.verify-changed-files.outputs.changed_files, 'gcp.sh')
+              gcp.sh
+ 
+      - name: Run step only when files change.
+        if: steps.verify-changed-files.outputs.files_changed == 'true'
         run: |
-          echo "gcp.sh has changed."
-          gsutil cp gcp.sh gs://matantest10/
-        # Outputs: "Changed files: new.txt test_directory/new.txt"
+           gsutil cp gcp.sh gs://matantest10/
+         # Outputs: "Changed files: new.txt test_directory/new.txt"
