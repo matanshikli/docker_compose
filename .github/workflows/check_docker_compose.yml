@@ -11,9 +11,6 @@ jobs:
       VNNAME: demo1dddssd101
     steps:
       - uses: actions/checkout@v2
-        with:
-        # Checkout as many commits as needed for the diff
-        fetch-depth: 2
       - shell: pwsh
         id: check_file_changed
         run: |
