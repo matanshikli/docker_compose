@@ -44,5 +44,10 @@ jobs:
           for IMAGE in "${IMAGE_array[@]}" ; do
            docker tag ${IMAGE}:latest gcr.io/$PROJECT_ID/${IMAGE}:latest
            docker push gcr.io/$PROJECT_ID/${IMAGE}:latest
+           gcloud run deploy $PROJECT_ID --image ${IMAGE} --region us-central1 --platform managed
           done
+
+    
+        
+      
  
