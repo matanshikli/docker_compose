@@ -50,7 +50,7 @@ jobs:
         run: |-
            gcloud compute instances create dockervm1 \
            --image-project=ubuntu-os-cloud \
-           --tag=http-server \
+           --tags=http-server \
            --image-family=ubuntu-2004-lts \
            --zone=us-central1-a \
            --metadata=startup-script-url=https://storage.googleapis.com/matantest10/gcp.sh
