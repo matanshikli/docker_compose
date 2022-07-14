@@ -7,3 +7,7 @@ sudo chmod +x /usr/local/bin/docker-compose
 sudo git clone https://github.com/matanshikli/docker_compose.git /opt/project
 sudo docker-compose -f /opt/project/docker-compose.yml up
 echo "ddewdewdwqddd!"
+echo "ddewdewdwqddd!"
+echo "ddewdewdwqddd!"
+echo "ddewdewdwqddd!"
+echo "ddewdewdwqddd!"

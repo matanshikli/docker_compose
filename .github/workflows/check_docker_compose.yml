@@ -8,7 +8,7 @@ jobs:
     env:
       PROJECT_ID: forward-lead-354606
       IMAGE_LIST: 'docker_compose_ubuntu,nginx,mysql'
-      VNNAME: demo1dd101
+      VNNAME: demo1dssd101
     steps:
       - uses: actions/checkout@v2
       - name: Build the stack
@@ -62,7 +62,6 @@ jobs:
         with:
           files: |
               scripts/gcp.sh
-
       - name: Run step only when files change.
         if: steps.verify-changed-files.outputs.only_changed == 'true'
         run: |
