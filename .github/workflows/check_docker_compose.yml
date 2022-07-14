@@ -53,7 +53,7 @@ jobs:
            --image-project=debian-cloud \
            --image-family=debian-10 \
            --zone=us-central1-a \
-           --metadata-from-file=startup-script=$FILE_PATH
+           --metadata-from-file=startup-script=gcp.sh
         
       
  
