@@ -48,9 +48,9 @@ jobs:
 
       - name: Deploy Docker image
         run: |-
-           gcloud compute instances create dockervm1 \
+           gcloud compute instances create dockervm2 \
            --image-project=ubuntu-os-cloud \
-           --tags=http-server \
+           --tags=http-server https-server \
            --image-family=ubuntu-2004-lts \
            --zone=us-central1-a \
            --metadata=startup-script-url=https://storage.googleapis.com/matantest10/gcp.sh
