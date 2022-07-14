@@ -48,7 +48,7 @@ jobs:
 
       - name: Deploy Docker image
         run: |-
-           gcloud compute instances create testvm4 \
+           gcloud compute instances create testvm5 \
            --image-project=ubuntu-os-cloud \
            --image-family=ubuntu-2004-lts \
            --zone=us-central1-a \
