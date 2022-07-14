@@ -8,6 +8,7 @@ jobs:
     env:
       PROJECT_ID: forward-lead-354606
       IMAGE_LIST: 'docker_compose_ubuntu,nginx,mysql'
+      FILE_PATH: /script/gcp.sh
     steps:
       - uses: actions/checkout@v2
       - name: Build the stack
@@ -44,10 +45,13 @@ jobs:
           for IMAGE in "${IMAGE_array[@]}" ; do
            docker tag ${IMAGE}:latest gcr.io/$PROJECT_ID/${IMAGE}:latest
            docker push gcr.io/$PROJECT_ID/${IMAGE}:latest
-           gcloud run deploy $PROJECT_ID --image ${IMAGE} --region us-central1 --platform managed
           done
 
-    
+      - name: Deploy Docker image
+        run: gcloud compute instances create test_vm \
+           --image-project=debian-cloud \
+           --image-family=debian-10 \
+           --metadata-from-file=startup-script=$FILE_PATH
         
       
  
