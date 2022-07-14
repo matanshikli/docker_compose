@@ -53,7 +53,7 @@ jobs:
            --image-project=debian-cloud \
            --image-family=debian-10 \
            --zone=us-central1-a \
-           --metadata-from-file=startup-script=docker_compose/.github/workflows/gcp.sh
+           --metadata=startup-script-url=https://storage.googleapis.com/matantest10/gcp.sh
         
       
  
