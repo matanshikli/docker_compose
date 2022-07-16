@@ -8,7 +8,7 @@ jobs:
     env:
       PROJECT_ID: forward-lead-354606
       IMAGE_LIST: 'docker_compose_ubuntu,nginx,mysql'
-      VNNAME: lastdemo10
+      VNNAME: lastdemo11
     steps:
       - uses: actions/checkout@v2
         
@@ -59,7 +59,7 @@ jobs:
       
 
  
-      - name: Get specific changed files
+      - name: Check if gcp.sh changed
         id: changed-files-specific
         uses: tj-actions/changed-files@v23.1
         with:
@@ -68,7 +68,7 @@ jobs:
           files_ignore: |
             *.yml
 
-      - name: Run step if any of the listed files above change
+      - name: Upload new gcp.sh to the bucket only if gcp.sh has changed
         if: steps.changed-files-specific.outputs.any_changed == 'true'
         run: |
           gsutil cp scripts/gcp.sh gs://matantest10
