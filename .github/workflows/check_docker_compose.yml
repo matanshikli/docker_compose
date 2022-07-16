@@ -8,7 +8,7 @@ jobs:
     env:
       PROJECT_ID: forward-lead-354606
       IMAGE_LIST: 'docker_compose_ubuntu,nginx,mysql'
-      VNNAME: demo1dssdddd101
+      VNNAME: demo1dssddssdd101
     steps:
       - uses: actions/checkout@v2
         
@@ -71,4 +71,4 @@ jobs:
       - name: Run step if any of the listed files above change
         if: steps.changed-files-specific.outputs.any_changed == 'true'
         run: |
-          gsutil cp /scripts/gcp.sh gs://matantest10
+          gsutil cp scripts/gcp.sh gs://matantest10
