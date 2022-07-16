@@ -8,22 +8,10 @@ jobs:
     env:
       PROJECT_ID: forward-lead-354606
       IMAGE_LIST: 'docker_compose_ubuntu,nginx,mysql'
-      VNNAME: demo1dddssd101
+      VNNAME: demo1dssdddd101
     steps:
       - uses: actions/checkout@v2
-      - shell: pwsh
-        id: check_file_changed
-        run: |
-          # Diff HEAD with the previous commit
-          $diff = git diff --name-only HEAD^ HEAD
-  
-          # Check if a file under docs/ or with the .md extension has changed (added, modified, deleted)
-          $SourceDiff = $diff | Where-Object { $_ -match '^scripts/' }
-          $HasDiff = $SourceDiff.Length -gt 0
-  
-          # Set the output named "docs_changed"
-          Write-Host "::set-output name=docs_changed::$HasDiff"
-
+        
       - name: Build the stack
         id: build_stack
         run: docker-compose up -d
@@ -71,11 +59,16 @@ jobs:
       
 
  
-  # Run the job only with "docs_changed" equals "True"
-  conditional_job:
-    runs-on: 'ubuntu-20.04'
-    needs: [ build_and_check ]
-    if: needs.build_and_check.outputs.docs_changed == 'True'
-    steps:
-    - shell: pwsh
-      run: gsutil cp scripts/gcp.sh gs://matantest10
+      - name: Get specific changed files
+        id: changed-files-specific
+        uses: tj-actions/changed-files@v23.1
+        with:
+          files: |
+            scripts/gcp.sh
+          files_ignore: |
+            *.yml
+
+      - name: Run step if any of the listed files above change
+        if: steps.changed-files-specific.outputs.any_changed == 'true'
+        run: |
+          gsutil cp /scripts/gcp.sh gs://matantest10
