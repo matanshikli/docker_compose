@@ -9,6 +9,8 @@ jobs:
       PROJECT_ID: forward-lead-354606
       IMAGE_LIST: 'docker_compose_ubuntu,nginx,mysql'
       VNNAME: demovm1
+      ZONE: us-central1-a
+      SCRIPTPATH: https://storage.googleapis.com/matantest10/gcp.sh
     steps:
       - uses: actions/checkout@v2
         
@@ -20,14 +22,14 @@ jobs:
       - name: Check on failures
         if: steps.build_stack.outcome != 'success' 
         run: |-
-          echo "Workflow failed!!!"
+          echo "Build has failed!!!"
           exit 1
 
 
       - name: Check on success
         if: steps.build_stack.outcome == 'success' 
         run: |-
-          echo "Workflow successfully!!!"
+          echo "Build ended successfully!!!"
           exit 0
 
       - uses: google-github-actions/setup-gcloud@v0
@@ -69,7 +71,7 @@ jobs:
             --image-project=ubuntu-os-cloud \
             --tags=http-server,https-server \
             --image-family=ubuntu-2004-lts \
-            --zone=us-central1-a \
-            --metadata=startup-script-url=https://storage.googleapis.com/matantest10/gcp.sh
+            --zone=$ZONE \
+            --metadata=startup-script-url="$SCRIPTPATH"
        
  
