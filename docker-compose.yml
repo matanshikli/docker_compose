@@ -46,11 +46,18 @@ services:
       - "5000:5000"
     expose:
       - 5000
-    
     networks:
       - main_net
     
-
+  webserver:
+      image: nginx:latest
+      container_name: webserver
+      networks:
+        - main_net
+      volumes:
+        - ./nginx:/usr/share/nginx/html
+      ports:
+        - "80:80"
   
 networks: 
    main_net:

@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PROJECT_ID: forward-lead-354606
-      IMAGE_LIST: 'docker_compose_ubuntu,nginx,mysql'
+      IMAGE_LIST: 'docker_compose_ubuntu,docker_compose_flask,nginx,mysql'
       VNNAME: demovm10
       ZONE: us-central1-a
       SCRIPTPATH: https://storage.googleapis.com/matantest10/gcp.sh
