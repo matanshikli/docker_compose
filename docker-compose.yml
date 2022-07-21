@@ -32,15 +32,25 @@ services:
     volumes:
       - ./ubuntu:/root/home
 
-  webserver:
-      image: nginx:latest
-      container_name: webserver
-      networks:
-        - main_net
-      volumes:
-        - ./nginx:/usr/share/nginx/html
-      ports:
-        - "80:80"
+  flask:
+    build:
+      context: .
+      dockerfile: flask/Dockerfile
+    deploy:
+      restart_policy:
+        condition: on-failure
+    container_name: flask
+    depends_on:
+      - ubuntu
+    ports:
+      - "5000:5000"
+    expose:
+      - 5000
+    
+    networks:
+      - main_net
+    
+
   
 networks: 
    main_net:
