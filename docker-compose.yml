@@ -6,9 +6,9 @@ services:
     volumes:
       - ./mysql:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=Password!
+      - MYSQL_ROOT_PASSWORD=Password1!
       - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=Password!
+      - MYSQL_PASSWORD=Password1!
       - MYSQL_DATABASE=testdata
     ports:
       - "3306:3306"
@@ -20,9 +20,7 @@ services:
     expose:
       - 3306
     healthcheck:
-      test: ["CMD", "mysql", "--user=root", "--password=Password1!", "-e", "'SHOW DATABASES;'"]
-      timeout: 5s
-      retries: 5
+      test: ["CMD", "mysqladmin", "-uroot", "-pPassword!",  "ping", "-h", "localhost"]
 
 
   ubuntu:
