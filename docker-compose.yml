@@ -12,9 +12,7 @@ services:
       - MYSQL_DATABASE=testdata
     ports:
       - "3306:3306"
-    deploy:
-      restart_policy:
-        condition: on-failure
+    restart: on-failure
     networks:
       - main_net
     expose:
@@ -24,9 +22,7 @@ services:
 
   ubuntu:
     build: .
-    deploy:
-      restart_policy:
-        condition: on-failure
+    restart: on-failure
     container_name: ubuntu
     depends_on:
        - mysql   
@@ -41,9 +37,7 @@ services:
     build:
       context: .
       dockerfile: flask/Dockerfile
-    deploy:
-      restart_policy:
-        condition: on-failure
+    restart: on-failure
     container_name: flask
     depends_on:
        - ubuntu
