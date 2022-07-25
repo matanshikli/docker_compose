@@ -19,8 +19,7 @@ services:
       - main_net
     expose:
       - 3306
-    healthcheck:
-      test: ["CMD", "mysqladmin", "-uroot", "-pPassword!",  "ping", "-h", "localhost"]
+    
 
 
   ubuntu:
@@ -30,8 +29,7 @@ services:
         condition: on-failure
     container_name: ubuntu
     depends_on:
-       mysql:
-        condition: service_healthy
+       - mysql   
     environment:
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
     networks:
@@ -48,8 +46,7 @@ services:
         condition: on-failure
     container_name: flask
     depends_on:
-       ubuntu:
-        condition: service_completed_successfully
+       - ubuntu
     ports:
       - "5000:5000"
     expose:
