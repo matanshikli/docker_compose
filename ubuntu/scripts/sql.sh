@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mysql -h mysql -P 3306 -u root -pPassword1! testdata -Bse \
+mysql -h mysql -P 3306 -u root -p"$MYSQL_PASSWORD" testdata -Bse \
 "CREATE TABLE IF NOT EXISTS DATE ( timestamp TIMESTAMP NOT NULL); 
 INSERT INTO DATE (timestamp) VALUES (NOW());"
 
