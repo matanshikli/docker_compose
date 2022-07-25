@@ -6,7 +6,7 @@ services:
     volumes:
       - ./mysql:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD: "Password!"
+      - MYSQL_ROOT_PASSWORD=Password!
       - MYSQL_USER=${MYSQL_USER}
       - MYSQL_PASSWORD=Password!
       - MYSQL_DATABASE=testdata
@@ -27,7 +27,8 @@ services:
         condition: on-failure
     container_name: ubuntu
     depends_on:
-      - mysql
+       mysql:
+        condition: service_healthy
     environment:
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
     networks:
@@ -44,7 +45,8 @@ services:
         condition: on-failure
     container_name: flask
     depends_on:
-      - ubuntu
+       ubuntu:
+        condition: service_completed_successfully
     ports:
       - "5000:5000"
     expose:
