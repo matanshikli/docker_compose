@@ -12,6 +12,9 @@ services:
       - MYSQL_DATABASE=testdata
     ports:
       - "3306:3306"
+    deploy:
+      restart_policy:
+        condition: on-failure
     networks:
       - main_net
     expose:

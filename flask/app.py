@@ -8,14 +8,14 @@ app = Flask(__name__)
 #MySQL Hostname
 
 mydb = mysql.connector.connect(
-  host="172.20.0.2",               #hostname
+  host="mysql",               #hostname
   user="root",                   # the user who has privilege to the db
   passwd="Password1!",               #password for user
   database="testdata",               #database name
     auth_plugin = 'mysql_native_password',
 
 )
-app.config['MYSQL_HOST'] = '172.20.0.2'
+app.config['MYSQL_HOST'] = 'mysql'
 #MySQL username
 app.config['MYSQL_USER'] = 'root'
 #MySQL password here in my case password is null so i left empty
