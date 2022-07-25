@@ -8,7 +8,7 @@ jobs:
     env:
       PROJECT_ID: forward-lead-354606
       IMAGE_LIST: 'docker_compose_ubuntu,docker_compose_flask,nginx,mysql'
-      VNNAME: demovmflask1
+      VNNAME: demovmflask
       ZONE: us-central1-a
       SCRIPTPATH: https://storage.googleapis.com/matantest10/gcp.sh
     steps:
