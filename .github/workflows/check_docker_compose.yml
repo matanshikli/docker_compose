@@ -8,7 +8,7 @@ jobs:
     env:
       PROJECT_ID: forward-lead-354606
       IMAGE_LIST: 'docker_compose_ubuntu,docker_compose_flask,nginx,mysql'
-      VNNAME: demovmflask
+      VMNAME: demovmflask
       ZONE: us-central1-a
       SCRIPTPATH: https://storage.googleapis.com/matantest10/gcp.sh
     steps:
@@ -67,7 +67,7 @@ jobs:
 
       - name: Deploy Docker image
         run: |-
-            gcloud compute instances create $VNNAME \
+            gcloud compute instances create $VMNAME \
             --image-project=ubuntu-os-cloud \
             --tags=http-server,https-server,allow-5000 \
             --image-family=ubuntu-2004-lts \

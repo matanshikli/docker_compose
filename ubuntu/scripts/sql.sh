@@ -10,3 +10,4 @@ echo "SQL query failed"
 else
     echo "SQL query success!"
 fi
+echo "done"
